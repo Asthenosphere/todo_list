@@ -1,4 +1,4 @@
-<%= render 'shared/errors' %>
+<%= render 'shared/errors', obj: @article %>
 
 <div class='row'>
   <div class='col-xs-12'>
@@ -29,11 +29,6 @@
         </div>
       </div>
     <% end %>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= link_to "Cancel request and return to To-do List", articles_path %>
-      </div>
-    </div>
     <div class="col-xs-6 col-xs-offset-2">
       <%= link_to "Cancel request and return to To-do List", articles_path %>
     </div>
