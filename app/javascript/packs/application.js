@@ -18,7 +18,7 @@ import 'bootstrap'
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 //= require jquery
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
