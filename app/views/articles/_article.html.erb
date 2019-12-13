@@ -13,7 +13,7 @@
               last updated: <%= time_ago_in_words(t.updated_at) %> ago</small>
           </div>
         </div>
-        <% if logged_in? && current_user == t.user %>
+        <% if logged_in? && (current_user == t.user || current_user.admin?) %>
           <div class="article-actions"><br>
             <%= link_to "Edit this event", edit_article_path(t), class: "btn btn-xs btn-primary" %>
             <%= link_to "Delete this event", article_path(t), method: :delete, data: {confirm:
