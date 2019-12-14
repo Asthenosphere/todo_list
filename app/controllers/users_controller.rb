@@ -4,7 +4,13 @@ class UsersController < ApplicationController
   before_action :require_admin, only: [:destroy]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    if logged_in? and current_user.admin?
+      @users = User.paginate(page: params[:page], per_page: 5)
+    else
+      flash[:danger] = "You must be logged in as Admin to perform that action"
+      redirect_to root_path
+    end
+
   end
 
   def new
@@ -28,7 +34,7 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "Your account has been successfully updated"
-      redirect_to articles_path
+      redirect_to user_path
     else
       render 'edit'
     end
