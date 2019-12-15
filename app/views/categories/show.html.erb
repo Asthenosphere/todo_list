@@ -1,4 +1,3 @@
-
 <h1 align="center"><%= "Category: " + @category.name %></h1><br>
 <div align="center">
   <%= will_paginate @category_articles %>
@@ -22,7 +21,6 @@
         <% if t.categories.any? %>
           <p>Categories: <%= render t.categories %></p>
         <% end %>
-
       </div>
     </div>
   </div>

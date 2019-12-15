@@ -10,7 +10,6 @@ class UsersController < ApplicationController
       flash[:danger] = "You must be logged in as Admin to perform that action"
       redirect_to root_path
     end
-
   end
 
   def new
