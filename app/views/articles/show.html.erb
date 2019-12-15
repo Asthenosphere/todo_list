@@ -1,4 +1,4 @@
-<h2 align="center">Title: <%= @article.title %></h2>
+<h2 align="center">Title: <%= @article.title %></h2><br>
 <div class="well col-xs-8 col-xs-offset-2">
   <% if @article.user %>
     <ul class="listing">
@@ -8,14 +8,20 @@
           <li class="article-title">
             <%= link_to @article.user.username, user_path(@article.user) %>
           </li>
-          <li><small><%= pluralize(@article.user.articles.count, "task") if @article.user.articles %></small></li>
+          <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span></li>
         </div>
       </div>
     </ul>
   <% end %>
-  <h4 class="center description"><strong>Description: </strong></h4>
   <hr>
-  <%= simple_format(@article.description) %>
+  <h4 class="center description"><strong>Description: </strong></h4><br>
+  <div align="center">
+    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+  </div>
+  <br>
+  <div align="center">
+    <%= simple_format(@article.description) %>
+  </div>
   <div class="article-actions">
     <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
       <br><%= link_to "Update task", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
