@@ -3,7 +3,9 @@ require 'test_helper'
 class CategoryTest < ActiveSupport::TestCase
 
   def setup
-    @category = Category.new(name: "tutorials")
+    @user = User.create(username: "Asthenosphere", email: "gwyw9899@gmail.com", password: "password")
+    @category = Category.new(name: "tutorials", user: @user)
+
   end
 
   test "category validity" do

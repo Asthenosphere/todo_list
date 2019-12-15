@@ -1,0 +1,33 @@
+
+<h1 align="center"><%= "Category: " + @category.name %></h1><br>
+<div align="center">
+  <%= will_paginate @category_articles %>
+</div>
+<% @category_articles.each do |t| %>
+  <% if t.user == current_user %>
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="well well-lg">
+        <div class="article-title">
+          <%= link_to t.title, article_path(t) %>
+        </div>
+        <div class="article-body">
+          <%= truncate(t.description, length: 100) %>
+          <div class="article-meta-details">
+            <small>Created by: <%= t.user.username if t.user %>,
+              <%= time_ago_in_words(t.created_at) %> ago,
+              last updated: <%= time_ago_in_words(t.updated_at) %> ago</small>
+          </div>
+        </div>
+        <% if t.categories.any? %>
+          <p>Categories: <%= render t.categories %></p>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+<% end %>
+<div align="center">
+  <% will_paginate @category_articles %>
+</div>

@@ -13,6 +13,9 @@
               last updated: <%= time_ago_in_words(t.updated_at) %> ago</small>
           </div>
         </div>
+        <% if t.categories.any? %>
+          <p>Categories: <%= render t.categories %></p>
+        <% end %>
         <% if logged_in? && (current_user == t.user || current_user.admin?) %>
           <div class="article-actions"><br>
             <%= link_to "Update task", edit_article_path(t), class: "btn btn-xs btn-primary" %>
