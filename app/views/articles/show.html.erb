@@ -1,4 +1,18 @@
-<h2 align="center">Title: <%= @article.title %></h2><br>
+<h2 align="center">Title: <%= @article.title %></h2>
+<% if @article.status? %>
+  <div class="center completed">
+    <div align="center">
+      <h3 align="center">Status: Completed</h3>
+    </div>
+  </div>
+<% else %>
+  <div class="center ongoing">
+    <div align="center">
+      <h3 align="center">Status: Ongoing</h3>
+    </div>
+  </div>
+<% end %>
+<br>
 <div class="well col-xs-8 col-xs-offset-2">
   <% if @article.user %>
     <ul class="listing">
@@ -27,10 +41,15 @@
   <% end %>
   <div class="article-actions">
     <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
-      <br><%= link_to "Update task", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
-      <%= link_to "Delete task", article_path(@article), method: :delete, data: {confirm:
+      <br><%= link_to "Update this task", edit_article_path(@article), class: "btn btn-xs btn-primary" %>
+      <%= link_to "Delete this task", article_path(@article), method: :delete, data: {confirm:
        "Are you sure you want to delete the task?"}, class: "btn btn-xs btn-danger" %>
-      <%= link_to "View all tasks", user_path(current_user), class: "btn btn-xs btn-success" %>
+      <% if @article.status? %>
+        <%= link_to "Mark as Ongoing", changestatus_article_path(@article.id) , class: "btn btn-xs btn-warning" %>
+      <% else %>
+        <%= link_to "Mark as Completed", changestatus_article_path(@article.id) , class: "btn btn-xs btn-success" %>
+      <% end %>
+      <%= link_to "Back to To-do List", user_path(current_user), class: "btn btn-xs btn-info" %>
     <% end %>
   </div>
 </div>

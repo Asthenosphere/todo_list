@@ -80,7 +80,16 @@ $navbar-default-bg: #000000;
 }
 
 .input_checkbox input {
+  height: 20px;
   width: auto !important;
+}
+
+.ongoing {
+  color: crimson;
+}
+
+.completed {
+  color: #008000;
 }
 
 footer {

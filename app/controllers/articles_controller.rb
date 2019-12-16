@@ -40,12 +40,18 @@ class ArticlesController < ApplicationController
     @articles = arts.paginate(page: params[:page], per_page: 5)
   end
 
+  def changestatus
+    @article = Article.find(params[:id])
+    @article.toggle!(:status)
+    redirect_to article_path(@article)
+  end
+
   def show
   end
 
   def destroy
     @article.destroy
-    flash[:danger] = "Task was successfully deleted"
+    flash[:success] = "Task was successfully deleted"
     redirect_to user_path(current_user)
   end
 

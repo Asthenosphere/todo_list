@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     @category.user = current_user
     if @category.save
-      flash[:success] = "Category was created successfully. You may now select categories when you create or update tasks"
+      flash[:success] = "Category was created successfully. You may now select it when you create or update tasks"
       redirect_to user_path(current_user)
     else
       render 'new'

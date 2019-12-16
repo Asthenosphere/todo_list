@@ -10,7 +10,22 @@
           <li class="article-title">
             <%= link_to "#{article.title}", article_path(article) %>
           </li>
-          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span><br>
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <li> <% if article.status? %>
+            <div class="center completed">
+              <div align="center">
+                <h5 align="center">Status: Completed</h5>
+              </div>
+            </div>
+          <% else %>
+            <div class="center ongoing">
+              <div align="center">
+                <h5 align="center">Status: Ongoing</h5>
+              </div>
+            </div>
+          <% end %>
+          </li>
+
           <div>
             <div class="article-meta-details">
               <small>Create by: <%= article.user.username if !article.user.nil? %><br>
