@@ -10,6 +10,7 @@
             <%= link_to "#{category.name}", category_path(category) %>
           </li>
           <span class="glyphicon glyphicon-tag" aria-hidden="true"></span><br>
+          <li><small><%= pluralize(category.articles.count, "task") %></small></li>
           <div>
             <div class="article-meta-details">
             <small>Create by: <%= category.user.username if !category.user.nil? %><br>

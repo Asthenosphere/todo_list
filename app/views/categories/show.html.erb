@@ -1,5 +1,15 @@
 <h1 align="center"><%= "Category: " + @category.name %></h1><br>
 <div align="center">
+  <% if logged_in? and current_user == @category.user %>
+    <div class="row">
+      <%= link_to "Update category", edit_category_path(@category), class: "btn btn-xs btn-primary" %>
+      <%= link_to "Delete category", category_path(@category), method: :delete, data: {confirm:
+         "Are you sure you want to delete the category?"}, class: "btn btn-xs btn-danger" %>
+    </div><br><br>
+  <% end %>
+  <div class="row">
+
+  </div>
   <%= will_paginate @category_articles %>
 </div>
 <% @category_articles.each do |t| %>
@@ -22,6 +32,7 @@
           <p>Categories: <%= render t.categories %></p>
         <% end %>
       </div>
+
     </div>
   </div>
 <% end %>

@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    flash[:success] = "Task was successfully deleted"
+    flash[:warning] = "Task was successfully deleted"
     redirect_to user_path(current_user)
   end
 
