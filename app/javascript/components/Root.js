@@ -1,16 +1,14 @@
 import React from "react"
-import PropTypes from "prop-types"
+
 class Root extends React.Component {
-  render () {
+  render() {
     return (
-      <React.Fragment>
-        Welcome: {this.props.welcome}
-      </React.Fragment>
+      <div className={"center jumbotron"}>
+        <h1>To-do List</h1>
+        <a href={"signup"} className={"btn btn-primary btn-lg btn-xlarge"}>Sign up now</a>
+      </div>
     );
   }
 }
 
-Root.propTypes = {
-  welcome: PropTypes.string
-};
 export default Root
