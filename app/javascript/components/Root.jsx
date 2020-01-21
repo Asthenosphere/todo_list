@@ -61,6 +61,13 @@ export default class Root extends React.Component {
                 >
                   View Tasks
                 </Link>
+                <Link
+                  to="/categories"
+                  className="ui basic purple button"
+                  role="button"
+                >
+                  View Categories
+                </Link>
                 <button className={"ui basic red button"} onClick={() => this.handleLogoutClick()}>Log out</button>
               </div>
             </div>
