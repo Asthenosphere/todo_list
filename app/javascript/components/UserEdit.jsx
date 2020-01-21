@@ -67,7 +67,7 @@ export default class UserEdit extends React.Component {
       return;
     }
 
-    const url = "http://localhost:3000/api/v2/update/" + id.toString();
+    const url = "https://asthenosphere-todo-list.herokuapp.com/api/v2/update/" + id.toString();
 
     axios.post(url, {
         user: {
