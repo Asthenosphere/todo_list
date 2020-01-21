@@ -1,5 +1,5 @@
 class Api::V2::UsersController < ApplicationController
-  before_action :admin
+  before_action :admin, except: [:show, :update]
 
   def index
     users = User.all.order(created_at: :desc)
@@ -17,6 +17,26 @@ class Api::V2::UsersController < ApplicationController
   def destroy
     user&.destroy
     render json: { message: 'User deleted!'}
+  end
+
+  def update
+    user.update(
+        username: params['user']['username'],
+        email: params['user']['email'],
+        password: params['user']['password'],
+        password_confirmation: params['user']['password_confirmation']
+    )
+    if user
+      render json: {
+          status: :updated,
+          user: user
+      }
+    else
+      render json: {
+          status: 500,
+          errors: "User credentials invalid"
+      }
+    end
   end
 
   private

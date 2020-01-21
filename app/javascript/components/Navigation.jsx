@@ -19,6 +19,9 @@ export default class Navigation extends React.Component {
           undefined
         }
         <div className="right menu">
+          <Link to={"/user/" + this.props.current} className={this.props.active === "user" ? "active item" : "item"}>
+            Profile
+          </Link>
           <Link to="/" className={this.props.active === "home" ? "active item" : "item"}>
             Home
           </Link>

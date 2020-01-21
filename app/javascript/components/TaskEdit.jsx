@@ -128,7 +128,7 @@ class TaskEdit extends React.Component {
   render() {
     return (
       <div>
-        <Navigation admin={this.props.admin} active={"task_edit"} />
+        <Navigation admin={this.props.admin} active={"task_edit"} current={this.props.current} />
         <section className="jumbotron jumbotron-fluid text-center bg-transparent">
           <img src={city} width={"444"} height={"200"}/>
           <div className="container py-5">

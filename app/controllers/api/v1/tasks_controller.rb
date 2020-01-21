@@ -42,7 +42,6 @@ class Api::V1::TasksController < ApplicationController
         render json: { message: "Task was not updated successfully." }
       end
     else
-      render json: task.errors.full_messages
       redirect_to root_path
     end
   end

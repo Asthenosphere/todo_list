@@ -45,7 +45,7 @@ class Users extends React.Component {
 
     return (
       <div>
-        <Navigation admin={this.props.admin} active={"users"} />
+        <Navigation admin={this.props.admin} active={"users"} current={this.props.current} />
         <section className="jumbotron jumbotron-fluid text-center bg-transparent">
           <img src={city} width={"589"} height={"200"}/>
           <div className="container py-5">

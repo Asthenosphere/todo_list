@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import city from "./NewYork.png";
+import Navigation from "./Navigation";
 
 class Task extends React.Component {
   constructor(props) {
@@ -79,23 +80,8 @@ class Task extends React.Component {
     const taskDescription = this.addHtmlEntities(task.description);
     
     return (
-      <div className="">
-        <div className="ui inverted menu">
-          <Link to="/tasks" className="item">Tasks</Link>
-          <Link to="/new_task" className="item">New Task</Link>
-          <Link to="/categories" className="item">Categories</Link>
-          <a className="item">New Category</a>
-          {this.props.admin ?
-            <Link to="/users" className="item">Users</Link>
-            :
-            undefined
-          }
-          <div className="right menu">
-            <Link to="/" className="item">
-              Home
-            </Link>
-          </div>
-        </div>
+      <div>
+        <Navigation admin={this.props.admin} active={"task"} current={this.props.current}/>
         <section className="jumbotron jumbotron-fluid text-center bg-transparent">
           <img src={city} width={"427"} height={"200"}/>
           <div className="container py-5">

@@ -53,7 +53,7 @@ class Tasks extends React.Component {
 
     return (
       <div>
-        <Navigation admin={this.props.admin} active={"tasks"} />
+        <Navigation admin={this.props.admin} active={"tasks"} current={this.props.current} />
         <section className="jumbotron jumbotron-fluid text-center bg-transparent">
           <img src={city} width={"448"} height={"200"}/>
           <div className="container py-5">

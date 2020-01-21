@@ -4,11 +4,12 @@ import Footer from "./Footer";
 import city from "./Barcelona.png";
 import person from "./person-fill.svg";
 import Navigation from "./Navigation";
+import axios from 'axios';
 
 class User extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { user: { username: "", email: "", created_at: ""}};
+    this.state = { user: { id: -1, username: "", email: "", created_at: "", admin: false}};
     this.deleteUser = this.deleteUser.bind(this);
   }
 
@@ -28,7 +29,7 @@ class User extends React.Component {
         throw new Error("Network response was not ok.");
       })
       .then(response => this.setState({ user: response }))
-      .catch(() => this.props.history.push("/tasks"));
+      .catch(() => this.props.history.push("/user/" + response.id));
   }
 
   deleteUser() {
@@ -65,10 +66,11 @@ class User extends React.Component {
     const { user } = this.state;
     const date = user.created_at;
     const cdate = (new Date(date)).toDateString();
+    const deletable = this.state.user.id !== this.props.current;
 
     return (
       <div>
-        <Navigation admin={this.props.admin} active={"user"} />
+        <Navigation admin={this.props.admin} active={"user"} current={this.props.current} />
         <section className="jumbotron jumbotron-fluid text-center bg-transparent">
           <img src={city} width={"455"} height={"200"}/>
           <div className="container py-5">
@@ -92,9 +94,24 @@ class User extends React.Component {
         </div><br/><br/><br/>
         <div className="container">
           <div className="center">
-            <button type="button" className="ui basic red button" onClick={this.deleteUser}>Delete User</button>
+            {this.props.admin && deletable ?
+              undefined
+              :
+              <Link to={"/user/" + this.state.user.id + "/update"} className="ui basic blue button">Update
+                Profile</Link>
+            }
             {"  "}
-            <Link to="/users" className="ui basic teal button">Back to Users</Link>
+            {this.props.admin && deletable ?
+              <button type="button" className="ui basic red button" onClick={this.deleteUser}>Delete User</button>
+              :
+              undefined
+            }
+            {"  "}
+            {this.props.admin ?
+              <Link to="/users" className="ui basic teal button">Back to Users</Link>
+              :
+              <Link to="/" className="ui basic teal button">Home</Link>
+            }
           </div>
         </div><br/><br/><br/><br/>
         <Footer />

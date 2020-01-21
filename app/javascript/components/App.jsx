@@ -12,6 +12,7 @@ import Categories from "./Categories";
 import Category from "./Category";
 import CategoryNew from "./CategoryNew";
 import CategoryEdit from "./CategoryEdit";
+import UserEdit from "./UserEdit";
 
 export default class App extends React.Component {
   constructor() {
@@ -27,7 +28,7 @@ export default class App extends React.Component {
   }
 
   checkLoginStatus() {
-    axios.get("https://asthenosphere-todo-list.herokuapp.com/logged_in", { withCredentials: true })
+    axios.get("http://localhost:3000/logged_in", { withCredentials: true })
       .then(response => {
         if (response.data.logged_in && this.state.loggedInStatus === "NOT_LOGGED_IN") {
           this.setState({
@@ -79,6 +80,7 @@ export default class App extends React.Component {
                   loggedInStatus={this.state.loggedInStatus}
                   username={this.state.user.username}
                   admin={this.state.user.admin}
+                  current={this.state.user.id}
                 />
               )}
             />
@@ -89,6 +91,7 @@ export default class App extends React.Component {
                   {...props}
                   loggedInStatus={this.state.loggedInStatus}
                   admin={this.state.user.admin}
+                  current={this.state.user.id}
                 />
               )}
             />
@@ -98,6 +101,7 @@ export default class App extends React.Component {
                 <Task
                   {...props}
                   admin={this.state.user.admin}
+                  current={this.state.user.id}
                 />
               )}
             />
@@ -105,48 +109,63 @@ export default class App extends React.Component {
               <TaskNew
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
               )} />
             <Route exact path="/task/:id/edit" render={props => (
               <TaskEdit
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
             <Route exact path="/users" render={props => (
               <Users
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
             <Route exact path="/user/:id" render={props => (
               <User
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
+              />
+            )} />
+            <Route exact path="/user/:id/update" render={props => (
+              <UserEdit
+                {...props}
+                admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
             <Route exact path="/categories" render={props => (
               <Categories
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
             <Route exact path="/category/:id" render={props => (
               <Category
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
             <Route exact path="/new_category" render={props => (
               <CategoryNew
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
             <Route exact path="/category/:id/update" render={props => (
               <CategoryEdit
                 {...props}
                 admin={this.state.user.admin}
+                current={this.state.user.id}
               />
             )} />
           </Switch>

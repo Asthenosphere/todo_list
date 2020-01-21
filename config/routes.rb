@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get 'users/index'
       get '/show/:id', to: 'users#show'
       delete '/destroy/:id', to: 'users#destroy'
+      post '/update/:id', to: 'users#update'
     end
   end
   resources :sessions, only: [:create]

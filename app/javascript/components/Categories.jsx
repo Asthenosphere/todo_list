@@ -45,7 +45,7 @@ class Categories extends React.Component {
     ));
     return (
       <>
-        <Navigation admin={this.props.admin} active={"categories"} />
+        <Navigation admin={this.props.admin} active={"categories"} current={this.props.current} />
         <section className="jumbotron jumbotron-fluid text-center bg-transparent">
           <img src={city} width={"522"} height={"200"}/>
           <div className="container py-5">

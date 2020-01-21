@@ -7,6 +7,7 @@ import TaskNew from "../components/TaskNew";
 import TaskEdit from "../components/TaskEdit";
 import Users from "../components/Users";
 import User from "../components/User";
+import UserEdit from "../components/UserEdit";
 import Categories from "../components/Categories";
 import Category from "../components/Category";
 import CategoryNew from "../components/CategoryNew";
@@ -22,6 +23,7 @@ export default (
       <Route path="/task/:id/edit" exact component={TaskEdit} />
       <Route path="/users" exact component={Users} />
       <Route path="/user/:id" exact component={User} />
+      <Route path="/user/:id/update" exact component={UserEdit} />
       <Route path="/categories" exact component={Categories} />
       <Route path="/category/:id" exact component={Category} />
       <Route path="/new_category" exact component={CategoryNew} />
