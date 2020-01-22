@@ -56,7 +56,7 @@ export default class UserEdit extends React.Component {
     event.preventDefault();
     const { username, email, password, password_confirmation } = this.state;
 
-    const url = "https://asthenosphere-todo-list.herokuapp.com/api/v2/update/" + id.toString();
+    const url = "http://localhost:3000/api/v2/update/" + id.toString();
     axios.post(url, {
         user: {
           username: username,
