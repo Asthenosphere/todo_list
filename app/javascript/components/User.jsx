@@ -4,7 +4,6 @@ import Footer from "./Footer";
 import city from "./Barcelona.png";
 import person from "./person-fill.svg";
 import Navigation from "./Navigation";
-import axios from 'axios';
 
 class User extends React.Component {
   constructor(props) {
@@ -23,13 +22,20 @@ class User extends React.Component {
 
     fetch(url)
       .then(response => {
+        if (response.redirected) {
+          this.props.history.push("/");
+        }
         if (response.ok) {
           return response.json();
         }
         throw new Error("Network response was not ok.");
       })
-      .then(response => this.setState({ user: response }))
-      .catch(() => this.props.history.push("/user/" + response.id));
+      .then(response => {
+        this.setState({ user: response })
+      })
+      .catch(() => {
+        this.props.history.push("/user/" + response.id)
+      });
   }
 
   deleteUser() {

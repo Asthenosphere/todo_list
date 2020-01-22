@@ -8,7 +8,11 @@ class Api::V2::UsersController < ApplicationController
 
   def show
     if user
-      render json: user
+      if user.id == current_user.id || current_user.admin
+        render json: user
+      else
+        redirect_to root_path
+      end
     else
       render json: user.errors.full_messages
     end
@@ -20,13 +24,12 @@ class Api::V2::UsersController < ApplicationController
   end
 
   def update
-    user.update(
+    if user.update(
         username: params['user']['username'],
         email: params['user']['email'],
         password: params['user']['password'],
         password_confirmation: params['user']['password_confirmation']
     )
-    if user
       render json: {
           status: :updated,
           user: user

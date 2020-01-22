@@ -18,7 +18,7 @@ export default class Registration extends React.Component {
 
   handleSubmit(event) {
     const { username, email, password, password_confirmation } = this.state;
-    axios.post("https://asthenosphere-todo-list.herokuapp.com/registrations", {
+    axios.post("http://localhost:3000/registrations", {
       user: {
         username: username,
         email: email,
@@ -44,7 +44,6 @@ export default class Registration extends React.Component {
   }
 
   handleChange(event) {
-    console.log("handle change", event);
     this.setState({
       [event.target.name]: event.target.value
     })

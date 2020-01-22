@@ -35,7 +35,6 @@ export default class UserEdit extends React.Component {
         }
         throw new Error("Network response was not ok.");
       }).then(function(data) {
-        console.log(data);
         _this.setState({
           username: data.username,
           email: data.email
@@ -46,7 +45,6 @@ export default class UserEdit extends React.Component {
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state);
   }
 
   onSubmit(event) {
@@ -57,7 +55,6 @@ export default class UserEdit extends React.Component {
     } = this.props;
     event.preventDefault();
     const { username, email, password, password_confirmation } = this.state;
-    console.log(this.state);
 
     if (username.length === 0 || email.length === 0) {
       window.alert("Username or email cannot be empty.");
@@ -67,7 +64,7 @@ export default class UserEdit extends React.Component {
       return;
     }
 
-    const url = "https://asthenosphere-todo-list.herokuapp.com/api/v2/update/" + id.toString();
+    const url = "http://localhost:3000/api/v2/update/" + id.toString();
 
     axios.post(url, {
         user: {
@@ -81,10 +78,12 @@ export default class UserEdit extends React.Component {
       .then(response => {
         if (response.data.status === "updated") {
           this.props.history.push(`/user/${id}`);
+        } else if (response.data.status === 500) {
+          window.alert("Either the username or email address has been taken.");
         }
       })
       .catch(error => {
-        console.log("registration error", error);
+        console.log("user update error", error);
         if (password !== password_confirmation) {
           window.alert("Your password and password confirmation do not match.");
         } else {

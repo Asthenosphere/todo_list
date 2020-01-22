@@ -40,7 +40,6 @@ class TaskEdit extends React.Component {
         }
         throw new Error("Network response was not ok.");
       }).then(function(data) {
-        console.log(data);
         _this.setState({
           title: data.task.title,
           description: data.task.description,
@@ -60,7 +59,6 @@ class TaskEdit extends React.Component {
 
   onChange(event) {
     this.setState({ [event.target.name]: event.target.value });
-    console.log(this.state);
   }
 
   handleCheck(event) {
@@ -79,7 +77,6 @@ class TaskEdit extends React.Component {
   handleStatus(event) {
     let status = event.target.checked;
     this.setState({[event.target.name]: status});
-    console.log(this.state.status);
   }
 
   onSubmit(event) {

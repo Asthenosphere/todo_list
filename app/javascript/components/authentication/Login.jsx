@@ -16,7 +16,7 @@ export default class Login extends React.Component {
 
   handleSubmit(event) {
     const { email, password } = this.state;
-    axios.post("https://asthenosphere-todo-list.herokuapp.com/sessions", {
+    axios.post("http://localhost:3000/sessions", {
         user: {
           email: email,
           password: password,
@@ -39,7 +39,6 @@ export default class Login extends React.Component {
   }
 
   handleChange(event) {
-    console.log("handle change", event);
     this.setState({
       [event.target.name]: event.target.value
     })
