@@ -56,16 +56,7 @@ export default class UserEdit extends React.Component {
     event.preventDefault();
     const { username, email, password, password_confirmation } = this.state;
 
-    if (username.length === 0 || email.length === 0) {
-      window.alert("Username or email cannot be empty.");
-      return;
-    } else if (password_confirmation !== password) {
-      window.alert("Password does not match with password confirmation.");
-      return;
-    }
-
     const url = "https://asthenosphere-todo-list.herokuapp.com/api/v2/update/" + id.toString();
-
     axios.post(url, {
         user: {
           username: username,
@@ -76,10 +67,14 @@ export default class UserEdit extends React.Component {
       },
       { withCredentials: true })
       .then(response => {
-        if (response.data.status === "updated") {
+        if (response.data.status === 500) {
+          if (password_confirmation !== password) {
+            window.alert("Password does not match with password confirmation.");
+          } else {
+            window.alert("Either the username or email address has been taken.");
+          }
+        } else if (response.data.status === "updated") {
           this.props.history.push(`/user/${id}`);
-        } else if (response.data.status === 500) {
-          window.alert("Either the username or email address has been taken.");
         }
       })
       .catch(error => {

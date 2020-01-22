@@ -18,6 +18,7 @@ export default class Registration extends React.Component {
 
   handleSubmit(event) {
     const { username, email, password, password_confirmation } = this.state;
+
     axios.post("https://asthenosphere-todo-list.herokuapp.com/registrations", {
       user: {
         username: username,
@@ -28,17 +29,18 @@ export default class Registration extends React.Component {
     },
       { withCredentials: true })
       .then(response => {
-        if (response.data.status === "created") {
+        if (response.data.status === 500) {
+          if (password_confirmation !== password) {
+            window.alert("Password does not match with password confirmation.");
+          } else {
+            window.alert("Either the username or email address has been taken.")
+          }
+        } else if (response.data.status === "created") {
           this.props.handleSuccessfulAuthentication(response.data)
         }
       })
       .catch(error => {
         console.log("registration error", error);
-        if (password !== password_confirmation) {
-          window.alert("Your password and password confirmation do not match.");
-        } else {
-          window.alert("Either your Username or Email has been taken.");
-        }
       });
     event.preventDefault();
   }
