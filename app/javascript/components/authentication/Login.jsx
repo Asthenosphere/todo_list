@@ -47,7 +47,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <div>
-        <h5 className="center">Already has an account?</h5><br/>
+        <h5 className="center">Already have an account?</h5><br/>
         <div className="center">
           <img src={user} height={"32"} width={"32"}/>
         </div>
